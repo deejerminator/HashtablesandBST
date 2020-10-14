@@ -6,7 +6,7 @@ using namespace std;
 
 #define CAT_NAME_LEN    25
 #define APP_NAME_LEN    50
-#define VERSION_LEN     10
+#define VERSION_LEN     20
 #define UNIT_SIZE       3
 // =================================================================
 struct app_info{
@@ -116,8 +116,27 @@ void inorder(struct tree* root){
     }
 }
 
-void bstreport(struct tree* root){
+int BST_height(struct tree* root){
+    if(root == NULL){
+        return 0;
+    }
+    else{
+        int lheight = BST_height(root->left);
+        int rheight = BST_height(root->right);
 
+        if (lheight < rheight){return (rheight+1);}
+        else{return (lheight+1);}
+    }
+}
+
+int BST_count(struct tree* root){
+    int count = 1;
+    if(root == NULL){return 0;}
+    else{
+        count = count + BST_count(root->left);
+        count = count + BST_count(root->right);
+        return count;
+    }
 }
 
 void printlist(struct hash_table_entry *hash_table[], int tableSize){
@@ -137,20 +156,23 @@ struct hash_table_entry *temp;
 void search(string item, hash_table_entry *hashTable[], int tableSize){
     const char *newstring = item.c_str();
     int index = modulo(item, tableSize);
-    //cout << "modulo = " << index << endl;
     hash_table_entry *temp = hashTable[index];
     int count = 1;
     while(temp != NULL){
         if(strcmp(temp->app_name, newstring) == 0){
-            cout << "Found Application: " << temp->app_name;
-            cout << "\tApplication Name: " << temp->app_node->record.app_name;
-            cout << "\t"
+            cout << "Found Application: " << temp->app_name << endl;
+            cout << "\tCategory: " << temp->app_node->record.category << endl;
+            cout << "\tApplication Name: " << temp->app_node->record.app_name << endl;
+            cout << "\tVersion: " << temp->app_node->record.version << endl;
+            cout << "\tSize: " << temp->app_node->record.size << endl;
+            cout << "\tUnits: " << temp->app_node->record.units << endl;
+            cout << "\tPrice: $" << temp->app_node->record.price << endl << endl;
             break;
         }
         count++;
         temp = temp->next;
     }
-    if(temp == NULL){cout <<" NOT FOUND " << endl; }
+    if(temp == NULL){cout <<"Application: " << item << " not found\n\n"; }
 }
 
 int main() {
@@ -163,6 +185,7 @@ int main() {
     int catAmount;
     int appAmount;
     const char *temp;
+    const char* report;
     string currentLine = "";
     string searchItem = "";
 
@@ -219,7 +242,7 @@ int main() {
             }
         }
 }
-cout << "TEST: " << endl;
+
 /*
     for (int i = 0; i < catAmount; i++){
         cout << "================= FOR CATEGORY: " << cat[i].category << " =================" << endl;
@@ -227,16 +250,68 @@ cout << "TEST: " << endl;
     }
 */
     //printlist(hash_table, tableSize);
-    cout << "testing search: " << endl;
-    while(getline(cin, currentLine)){
-       // cout << "current line: " << currentLine << endl;
-        size_t  findapp = currentLine.find("find app");
+    int queryAmount;
+    getline(cin, currentLine);
+    queryAmount = stoi(currentLine);
+
+    for(int i = 0; i < queryAmount-1; i++){
+
+       getline(cin, currentLine);
+       size_t  findapp = currentLine.find("find app");
         if (findapp != string::npos){
             searchItem = currentLine.substr(9 );
-          //  cout << searchItem << endl;
         }
         search(searchItem, hash_table, tableSize);
     }
+
+    // get report
+    /*
+    getline(cin, currentLine);
+    report = currentLine.c_str();
+    if (strcmp(report, "report") == 0){
+        cout << "\t**** REPORT ****\n\n";
+      */
+        /*
+         * FOR BST
+         * print the category name, a count of the total number of nodes in the tree, the height of the tree,
+         * the height of the root node's left subtree, and the height of the root node's right subtree.
+         *
+         * FOR HASH
+         * print a table that lists for each chain length L, 0 <= L <= LMAX, the number of chains of length L,
+         * up the the maximum chain length LMAX that your hash table contains. In addition, compute the load factor
+         * a for the hash table, giving n and m.
+         *
+         * Implement the find app <app_name> command by directly searching the BST instead of the hash table. The
+         * easiest way to do this may be to use the hash table to extract the <category_name> and then search the
+         * appropriate BST. Compare the time to find an app <app_name> using the hash table, and by searching the BST
+         * for its category.
+         * */
+
+        // for bst
+/*
+        for(int i = 0; i < catAmount; i++){
+            cout << "BST CATEGORY: " << cat[i].category << endl;
+            if(cat[i].root == NULL){
+                cout << "TOTAL NODES: 0" << endl;
+                cout << "MAX HEIGHT: 0" << endl;
+                cout << "HEIGHT LEFT: 0" << endl;
+                cout << "HEIGHT RIGHT: 0\n\n";
+            }
+            else {
+                int lheight = BST_height(cat[i].root->left);
+                int rheight = BST_height(cat[i].root->right);
+                cout << "TOTAL NODES: " << BST_count(cat[i].root) << endl;
+                cout << "MAX HEIGHT: ";
+                if (lheight < rheight){cout << rheight << endl;}
+                else{cout << lheight << endl;}
+                cout << "HEIGHT LEFT: " << lheight << endl;
+                cout << "HEIGHT RIGHT: " << rheight << endl << endl;
+
+
+            }
+        }
+    }
+    */
 
 
 return 0;
