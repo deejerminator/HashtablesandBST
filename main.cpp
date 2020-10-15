@@ -10,6 +10,7 @@ using namespace std;
 #define VERSION_LEN     20
 #define UNIT_SIZE       3
 // =================================================================
+// STRUCTS INFO
 struct app_info{
     char category[CAT_NAME_LEN];   // name of category
     char app_name[APP_NAME_LEN];   // name of application
@@ -36,7 +37,8 @@ struct hash_table_entry{
     struct hash_table_entry *next;
 };
 // =================================================================
-bool isPrime(int item){
+// FUNCTIONS RELATED TO HASH TABLES
+bool isPrime(int item){         // test to see if the current number is prime, defined from project description
     int limit, factor = 2;
     limit = (long)( sqrtf( (float) item ) + 0.5f );
     while( (factor <= limit) && (item % factor) )
@@ -44,20 +46,20 @@ bool isPrime(int item){
     return( factor > limit );
 }
 
-int prime(int item){
-    item = item * 2;
+int prime(int item){            // function to find the nearest prime number to the given amount of apps.
+    item = item * 2;            // item * 2 because of project definition
     bool primetest = false;
 
-    while(primetest != true){
+    while(primetest != true){   // if the current number isn't a prime, we  + 1, to try and find the nearest prime.
         primetest = isPrime(item);
         if (primetest == false)
             item++;
     }
-    return item;
+    return item;                // return item after finding the nearest prime number.
 }
 
-int modulo(string appName, int key){
-
+int modulo(string appName, int key){ // simple function to add all ascii values of the string, and modulo the prime number
+                                    // this helps find the index the app belongs to.
     int temp = 0;
 
     for(int i = 0; i < appName.length(); i++){
@@ -67,99 +69,21 @@ int modulo(string appName, int key){
 }
 
 void hash_insert(struct tree* node, struct hash_table_entry *temp[], int tableSize){
-    string appName = node->record.app_name;
-    int index = modulo(appName, tableSize);
-    struct hash_table_entry* newEntry = new hash_table_entry();
 
-    newEntry->app_node = node;
+    int index = modulo(node->record.app_name, tableSize);       // calls modulo function to find index
+    struct hash_table_entry* newEntry = new hash_table_entry(); // allocate memory for new hashtable entry
+
+    newEntry->app_node = node;                                  // update hash entry with appdata
     strcpy(newEntry->app_name, node->record.app_name);
-    newEntry->next = temp[index];
-    temp[index] = newEntry;
-
-}
-// =================================================================
-
-struct tree* newNode(struct app_info currentApp) {
-
-    struct tree *temp = new tree();
-
-    temp->record = currentApp;
-    temp->left = temp->right = NULL;
-    return temp;
+    newEntry->next = temp[index];                               // push currentApp to the head of list, if list is null, newEntry->next
+    temp[index] = newEntry;                                    // allocates more memory and makes it NULL in case of new data
 }
 
-struct tree* insert(struct tree* treenode,  struct app_info currentApp, struct hash_table_entry *hashelement[], int tableSize){
-
-    if (treenode == NULL){
-        struct tree *nodetemp = newNode(currentApp);
-        hash_insert(nodetemp, hashelement, tableSize);
-        return nodetemp;
-    }// if a tree is empty, return a new node
-
-    if (strcmp(currentApp.app_name, treenode->record.app_name) <= 0){
-        treenode->left = insert(treenode->left, currentApp, hashelement, tableSize);
-    }
-    else{
-        treenode->right = insert(treenode->right, currentApp, hashelement, tableSize);
-    }
-    return treenode;
-}
-/*
-void inorder(struct tree* root){
-    if(root != NULL){
-        inorder(root->left);
-        cout << "category: " << root->record.category << endl;
-        cout << "name: " << root->record.app_name << endl;
-        cout << "version: " << root->record.version << endl;
-        cout << "size: " << root->record.size << endl;
-        cout << "units: " << root->record.units << endl;
-        cout << "price: " << root->record.price << endl;
-        inorder(root->right);
-    }
-}
-
-int BST_height(struct tree* root){
-    if(root == NULL){
-        return 0;
-    }
-    else{
-        int lheight = BST_height(root->left);
-        int rheight = BST_height(root->right);
-
-        if (lheight < rheight){return (rheight+1);}
-        else{return (lheight+1);}
-    }
-}
-
-int BST_count(struct tree* root){
-    int count = 1;
-    if(root == NULL){return 0;}
-    else{
-        count = count + BST_count(root->left);
-        count = count + BST_count(root->right);
-        return count;
-    }
-}
-
-void printlist(struct hash_table_entry *hash_table[], int tableSize){
-struct hash_table_entry *temp;
-    for(int i = 0; i < tableSize; i++){
-        cout << "hashtable[" << i << "]: ";
-        temp = hash_table[i];
-        if(temp == NULL){cout << "NULL";}
-        while(temp != NULL){
-            cout << "\"" << temp->app_name << "\" ";
-            temp = temp->next;
-        }
-        cout << endl;
-    }
-}
-*/
 void search(string item, hash_table_entry *hashTable[], int tableSize){
-    const char *newstring = item.c_str();
-    int index = modulo(item, tableSize);
-    hash_table_entry *temp = hashTable[index];
-    int count = 1;
+    const char *newstring = item.c_str();               // created newString for strcmp.
+    int index = modulo(item, tableSize);                // finds the index where item should be at.
+    hash_table_entry *temp = hashTable[index];          // created a temp to make sure not to overwrite actual data.
+
     while(temp != NULL){
         if(strcmp(temp->app_name, newstring) == 0){
             cout << "Found Application: " << temp->app_name << endl;
@@ -171,10 +95,35 @@ void search(string item, hash_table_entry *hashTable[], int tableSize){
             cout << "\tPrice: $" << fixed << setprecision(2) << temp->app_node->record.price << endl << endl;
             break;
         }
-        count++;
         temp = temp->next;
     }
     if(temp == NULL){cout <<"Application " << item << " not found.\n\n"; }
+}
+// =================================================================
+// FUNCTIONS RELATED TO BST
+struct tree* newNode(struct app_info currentApp) { // function to create a new node and store the currentApp
+
+    struct tree *temp = new tree();
+
+    temp->record = currentApp;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+
+struct tree* insert(struct tree* treenode,  struct app_info currentApp, struct hash_table_entry *hashelement[], int tableSize){
+
+    if (treenode == NULL){                              // if a tree is empty, return a new node, or find the emptry node it belongs to
+        struct tree *nodetemp = newNode(currentApp);
+        hash_insert(nodetemp, hashelement, tableSize);  // this will insert the given app into the hash table
+        return nodetemp;                                // after finding the location the currentApp belongs to.
+    }
+    if (strcmp(currentApp.app_name, treenode->record.app_name) <= 0){
+        treenode->left = insert(treenode->left, currentApp, hashelement, tableSize);
+    }
+    else{
+        treenode->right = insert(treenode->right, currentApp, hashelement, tableSize);
+    }
+    return treenode;
 }
 
 int main() {
@@ -187,131 +136,63 @@ int main() {
     int catAmount;
     int appAmount;
     int queryAmount;
-    const char *temp;
-    //const char* report;
     string currentLine = "";
     string searchItem = "";
 
     getline(cin, currentLine);
-    catAmount = stoi(currentLine); // first number of input file is the number of categories
+    catAmount = stoi(currentLine);          // first number of input file is the number of categories
 
-    struct categories cat[catAmount]; // initalize cat[] array with the category amount taken from the first line
+    struct categories cat[catAmount];       // initalize cat[] array with the category amount taken from the first line
 
-    for (int i = 0; i < catAmount; i++){ // store the each of the categories as strings into cat.category.
+    for (int i = 0; i < catAmount; i++){    // store the each of the categories as strings into cat.category.
         getline(cin, currentLine);
         strcpy(cat[i].category, currentLine.c_str());
-        cat[i].root = tree;     // allocate memory for the roots of each tree, the initial node.
+        cat[i].root = tree;                 // allocate memory for the roots of each tree, the initial node.
     }
 
     getline(cin, currentLine);
-    appAmount = stoi(currentLine); // get app amount from input
-    tableSize = prime(appAmount); // get table f
+    appAmount = stoi(currentLine);          // get app amount from input
+    tableSize = prime(appAmount);           // get table f
 
     hash_table = new hash_table_entry*[tableSize];
-    for(int i = 0; i < tableSize; i++){
+    for(int i = 0; i < tableSize; i++){     // allocate memory and set it to NULL
         hash_table[i] = NULL;
     }
 
     for (int i = 0; i < appAmount; i++){
-        // save category as string
-        getline(cin, currentLine);
-        strcpy(appData.category, currentLine.c_str());
-        // save app name as string
-        getline(cin, currentLine);
-        strcpy(appData.app_name, currentLine.c_str());
-        // save version # as string
-        getline(cin, currentLine);
-        strcpy(appData.version, currentLine.c_str());
-        // save app size in float
-        getline(cin, currentLine);
-        appData.size = stof(currentLine);
-        // save units as a string MB or GB
-        getline(cin, currentLine);
-        strcpy(appData.units, currentLine.c_str());
-        // save price as float
-        getline(cin, currentLine);
-        appData.price = stof(currentLine);
 
-        for (int i = 0; i < catAmount; i++){
-            if(strcmp(cat[i].category, appData.category) == 0){
+        getline(cin, currentLine);
+        strcpy(appData.category, currentLine.c_str());      // save category as string
+        getline(cin, currentLine);
+        strcpy(appData.app_name, currentLine.c_str());      // save app name as string
+        getline(cin, currentLine);
+        strcpy(appData.version, currentLine.c_str());       // save version # as string
+        getline(cin, currentLine);
+        appData.size = stof(currentLine);                   // save app size in float
+        getline(cin, currentLine);
+        strcpy(appData.units, currentLine.c_str());         // save units as a string MB or GB
+        getline(cin, currentLine);
+        appData.price = stof(currentLine);                  // save price as float
+
+        for (int i = 0; i < catAmount; i++){                        // find which category the app belongs to.
+            if(strcmp(cat[i].category, appData.category) == 0){     // and save it in the category's tree
                 cat[i].root = insert(cat[i].root, appData, hash_table, tableSize);
                 break;
             }
         }
 }
 
-/* USED TO TEST IF APPS GET SAVED IN THEIR APPROPRIATE CATEGORY
-    for (int i = 0; i < catAmount; i++){
-        cout << "================= FOR CATEGORY: " << cat[i].category << " =================" << endl;
-        inorder(cat[i].root);
-    }
-    * USED TO TEST WHERE EACH APP HAS BEEN SAVED IN THE HASH TABLE
-    printlist(hash_table, tableSize);
-    */
     getline(cin, currentLine);
-    queryAmount = stoi(currentLine);
+    queryAmount = stoi(currentLine);        // save number as query amount and run as many times as queries are needed.
 
     for(int i = 0; i < queryAmount; i++){
 
        getline(cin, currentLine);
-       size_t  findapp = currentLine.find("find app");
-        if (findapp != string::npos){
+       size_t  findapp = currentLine.find("find app"); // this helps me determine which query is being called,
+        if (findapp != string::npos){                     // will update with future query calls later
             searchItem = currentLine.substr(9 );
         }
         search(searchItem, hash_table, tableSize);
     }
-
-    // GET REPORT. THIS IS NOT YET FINISHED, BUT I HAVE THE MAX HEIGHT, LEFT HEIGHT AND RIGHT HEIGHT FOR BST DONE SO FAR.
-/*
-    getline(cin, currentLine);
-    report = currentLine.c_str();
-    if (strcmp(report, "report") == 0) {
-        cout << "\t**** REPORT ****\n\n";
-        cout << "coming soon" << endl;
-    }
-
-        /*
-         * FOR BST
-         * print the category name, a count of the total number of nodes in the tree, the height of the tree,
-         * the height of the root node's left subtree, and the height of the root node's right subtree.
-         *
-         * FOR HASH
-         * print a table that lists for each chain length L, 0 <= L <= LMAX, the number of chains of length L,
-         * up the the maximum chain length LMAX that your hash table contains. In addition, compute the load factor
-         * a for the hash table, giving n and m.
-         *
-         * Implement the find app <app_name> command by directly searching the BST instead of the hash table. The
-         * easiest way to do this may be to use the hash table to extract the <category_name> and then search the
-         * appropriate BST. Compare the time to find an app <app_name> using the hash table, and by searching the BST
-         * for its category.
-         *
-
-        // for bst
-
-        for(int i = 0; i < catAmount; i++){
-            cout << "BST CATEGORY: " << cat[i].category << endl;
-            if(cat[i].root == NULL){
-                cout << "TOTAL NODES: 0" << endl;
-                cout << "MAX HEIGHT: 0" << endl;
-                cout << "HEIGHT LEFT: 0" << endl;
-                cout << "HEIGHT RIGHT: 0\n\n";
-            }
-            else {
-                int lheight = BST_height(cat[i].root->left);
-                int rheight = BST_height(cat[i].root->right);
-                cout << "TOTAL NODES: " << BST_count(cat[i].root) << endl;
-                cout << "MAX HEIGHT: ";
-                if (lheight < rheight){cout << rheight << endl;}
-                else{cout << lheight << endl;}
-                cout << "HEIGHT LEFT: " << lheight << endl;
-                cout << "HEIGHT RIGHT: " << rheight << endl << endl;
-
-
-     *       }
-        }
-    }
-    */
-
-
 return 0;
 }

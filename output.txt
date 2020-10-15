@@ -4,7 +4,7 @@ Found Application: Jubitron the Girl Robot
 	Category: Books
 	Application Name: Jubitron the Girl Robot
 	Version: 2.08
-	Size: 110
+	Size: 110.0
 	Units: MB
 	Price: $1.99
 
@@ -44,6 +44,3 @@ Found Application: Sleep Cycle Alarm Clock
 
 Application Ultimate Guitar not found.
 
-	**** REPORT ****
-
-coming soon
