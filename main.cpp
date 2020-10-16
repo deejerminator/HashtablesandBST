@@ -92,12 +92,12 @@ void search(string item, hash_table_entry *hashTable[], int tableSize){
             cout << "\tVersion: " << temp->app_node->record.version << endl;
             cout << "\tSize: " << fixed << setprecision(1) << temp->app_node->record.size << endl;
             cout << "\tUnits: " << temp->app_node->record.units << endl;
-            cout << "\tPrice: $" << fixed << setprecision(2) << temp->app_node->record.price << endl << endl;
+            cout << "\tPrice: $" << fixed << setprecision(2) << temp->app_node->record.price << endl;
             break;
         }
         temp = temp->next;
     }
-    if(temp == NULL){cout <<"Application " << item << " not found.\n\n"; }
+    if(temp == NULL){cout <<"Application " << item << " not found.\n"; }
 }
 // =================================================================
 // FUNCTIONS RELATED TO BST
@@ -184,7 +184,7 @@ int main() {
 
     getline(cin, currentLine);
     queryAmount = stoi(currentLine);        // save number as query amount and run as many times as queries are needed.
-
+    if (queryAmount == 0){ return 0; }
     for(int i = 0; i < queryAmount; i++){
 
        getline(cin, currentLine);
@@ -193,6 +193,7 @@ int main() {
             searchItem = currentLine.substr(9 );
         }
         search(searchItem, hash_table, tableSize);
+        if(i < queryAmount-1){cout << endl;}
     }
 return 0;
 }
