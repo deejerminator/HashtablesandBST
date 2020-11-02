@@ -6,7 +6,7 @@
 using namespace std;
 
 #define CAT_NAME_LEN    25
-#define APP_NAME_LEN    50
+#define APP_NAME_LEN    60
 #define VERSION_LEN     20
 #define UNIT_SIZE       3
 // =================================================================
@@ -79,6 +79,9 @@ void hash_insert(struct tree* node, struct hash_table_entry *temp[], int tableSi
     temp[index] = newEntry;                                    // allocates more memory and makes it NULL in case of new data
 }
 
+// =====================================================================================
+// functions related to queries
+
 void search(string item, hash_table_entry *hashTable[], int tableSize){
     const char *newstring = item.c_str();               // created newString for strcmp.
     int index = modulo(item, tableSize);                // finds the index where item should be at.
@@ -97,8 +100,21 @@ void search(string item, hash_table_entry *hashTable[], int tableSize){
         }
         temp = temp->next;
     }
-    if(temp == NULL){cout <<"Application " << item << " not found.\n"; }
+    if(temp == NULL){cout <<"Application " << item << " not found." << endl; }
 }
+
+void searchCategory(string item, struct categories *cat, int catAmount){
+    const char *newString = item.c_str();
+    bool found = false;
+    for (int i = 0; i < catAmount; i++){
+        if(strcmp(newString, cat[i].category) == 0){
+            cout << "FOUND WHILE IN SEARCHCATEGORY" << endl;
+            found = true;
+        }
+    }
+    if(found == false){cout << "Category: " << item << " not found." << endl;}
+}
+
 // =================================================================
 // FUNCTIONS RELATED TO BST
 struct tree* newNode(struct app_info currentApp) { // function to create a new node and store the currentApp
@@ -138,6 +154,11 @@ int main() {
     int queryAmount;
     string currentLine = "";
     string searchItem = "";
+    // queries
+    string findprice = "find price free";
+    string range = "range";
+    string delapp = "delete";
+    string report = "report";
 
     getline(cin, currentLine);
     catAmount = stoi(currentLine);          // first number of input file is the number of categories
@@ -161,17 +182,17 @@ int main() {
 
     for (int i = 0; i < appAmount; i++){
 
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         strcpy(appData.category, currentLine.c_str());      // save category as string
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         strcpy(appData.app_name, currentLine.c_str());      // save app name as string
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         strcpy(appData.version, currentLine.c_str());       // save version # as string
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         appData.size = stof(currentLine);                   // save app size in float
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         strcpy(appData.units, currentLine.c_str());         // save units as a string MB or GB
-        getline(cin, currentLine);
+        getline(cin, currentLine, '\n');
         appData.price = stof(currentLine);                  // save price as float
 
         for (int i = 0; i < catAmount; i++){                        // find which category the app belongs to.
@@ -185,6 +206,62 @@ int main() {
     getline(cin, currentLine);
     queryAmount = stoi(currentLine);        // save number as query amount and run as many times as queries are needed.
     if (queryAmount == 0){ return 0; }
+
+    /*
+     * need to support:
+     * find app <app name>
+     * find category <category name>
+     * find price free <free>
+     * range <category name> price <low> <high>
+     * range <category name> app <low> <high>
+     * delete <category name> <app name>
+     * */
+
+    while(getline(cin, currentLine)){
+        size_t  findapp = currentLine.find("find app");
+        size_t  findcat = currentLine.find("find category");
+        size_t findprice = currentLine.find("find price free");
+        size_t range = currentLine.find("range");
+        size_t delapp = currentLine.find("delete");
+
+        if (findapp != string::npos){                     // will update with future query calls later
+            size_t q1 = currentLine.find('"');
+            size_t q2 = currentLine.find('"', q1+1);
+            searchItem = currentLine.substr(q1+1, q2-q1-1);
+            search(searchItem, hash_table, tableSize);
+        }
+
+        if (findcat != string::npos){                     // will update with future query calls later
+           cout << "MADE IT TO FIND CAT" << endl;
+           searchItem = currentLine.substr(14 );
+
+           searchCategory(searchItem, cat, catAmount);
+
+        }
+
+        if (findprice != string::npos){                     // will update with future query calls later
+            cout << "MADE IT TO FREE " << endl;
+
+            for(int i = 0; i < catAmount; i++){
+                //searchfree(cat[i]);
+            }
+        }
+
+        if (range != string::npos){
+            cout << "MADE IT TO RANGE" << endl;
+            // will update with future query calls later
+            //searchItem = currentLine.substr(9 );
+        }
+
+        if (delapp != string::npos){                     // will update with future query calls later
+
+            cout << "MADE IT TO DELETE APP" << endl;
+            //searchItem = currentLine.substr(9 );
+        }
+
+    }
+
+    /*
     for(int i = 0; i < queryAmount; i++){
 
        getline(cin, currentLine);
@@ -195,5 +272,6 @@ int main() {
         search(searchItem, hash_table, tableSize);
         if(i < queryAmount-1){cout << endl;}
     }
+     */
 return 0;
 }
