@@ -81,7 +81,6 @@ void hash_insert(struct tree* node, struct hash_table_entry *temp[], int tableSi
 
 // =====================================================================================
 // functions related to queries
-
 void search(string item, hash_table_entry *hashTable[], int tableSize){
     const char *newstring = item.c_str();               // created newString for strcmp.
     int index = modulo(item, tableSize);                // finds the index where item should be at.
@@ -102,18 +101,137 @@ void search(string item, hash_table_entry *hashTable[], int tableSize){
     }
     if(temp == NULL){cout <<"Application " << item << " not found." << endl; }
 }
+void CATinorder(struct tree* root){
+    if(root != NULL){
+        CATinorder(root->left);
+        cout << "\t" << root->record.app_name << endl;
+        CATinorder(root->right);
+    }
+}
 
 void searchCategory(string item, struct categories *cat, int catAmount){
     const char *newString = item.c_str();
     bool found = false;
     for (int i = 0; i < catAmount; i++){
+        tree* temp = cat[i].root;
         if(strcmp(newString, cat[i].category) == 0){
-            cout << "FOUND WHILE IN SEARCHCATEGORY" << endl;
+            if(cat[i].root != NULL){ cout << "Category: " << item << endl; CATinorder(temp);}
+            else{cout << "Category " << item << " no apps found." << endl;}
             found = true;
         }
     }
-    if(found == false){cout << "Category: " << item << " not found." << endl;}
+    if(found == false){cout << "Category " << item << " not found." << endl;}
 }
+
+void FREEinorder(struct tree* root, int &count){
+
+    if(root != NULL){
+        FREEinorder(root->left, count);
+        if(root->record.price == 0){
+            cout << "\t" << root->record.app_name << endl;
+            count++;
+        }
+        FREEinorder(root->right, count);
+    }
+}
+void searchFree(struct categories *cat, int catAmount){
+
+
+    for (int i = 0; i < catAmount; i++){
+        int count = 0;
+        tree* temp = cat[i].root;
+        cout << "Free Applications in Category: " << cat[i].category << endl;
+
+        if(cat[i].root == NULL){cout << "\tNo free applications found." << endl;}
+        else{
+            FREEinorder(temp, count);
+            if(count == 0) {cout << "\tNo free applications found." << endl;}
+        }
+        cout << endl;
+    }
+}
+
+void RangeA(string firstl, string lastl, struct tree* root, int &count){
+
+    if(root != NULL){
+        RangeA(firstl, lastl, root->left, count);
+
+        const char* first = firstl.c_str();
+        const char* last = lastl.c_str();
+        string app = root->record.app_name;
+        string firstletters = app.substr(0,firstl.length());
+        string lastletters = app.substr(0, lastl.length());
+        const char* comp = firstletters.c_str();
+        const char* comp2 = lastletters.c_str();
+
+        if(strcmp(comp, first) >= 0 && strcmp(comp2, last) <= 0){
+            cout << "\t" << root->record.app_name << endl;
+            count++;
+        }
+
+        RangeA(firstl, lastl, root->right, count);
+    }
+}
+
+void RangeP(float firstprice, float lastprice, struct tree* root, int &count){
+
+    if(root != NULL){
+        RangeP(firstprice, lastprice, root->left, count);
+
+        if(root->record.price >= firstprice && root->record.price <= lastprice){
+            cout << "\t" << root->record.app_name << endl;
+            count++;
+        }
+
+        RangeP(firstprice, lastprice, root->right, count);
+    }
+
+}
+
+void Range(string item, string newCat, struct categories *cat, int catAmount){
+    int count = 0;
+    size_t suba = item.find("app");
+    size_t subp = item.find("price");
+    const char* category = newCat.c_str();
+    struct categories* temp = cat;
+
+    if(suba != string::npos){
+        size_t aq1 = item.find('"');
+        size_t aq2 = item.find('"', aq1 + 1 );
+        size_t aq3 = item.find('"', aq2 + 1);
+        size_t aq4 = item.find('"', aq3 + 1 );
+        string firstl = item.substr(aq1+1, aq2-aq1-1);
+        string lastl = item.substr(aq3+1, aq4-aq3-1);
+
+        for (int i = 0; i < catAmount; i++){
+            if(strcmp(category,cat[i].category) == 0){
+                cout  << "Applications in Range (" << firstl << "," << lastl << ") in Category: " << newCat << endl;
+                RangeA(firstl, lastl, temp[i].root, count);
+            }
+        }
+
+        if (count == 0){cout << "\tNo applications found in " << newCat << " for the given range (" << firstl << "," << lastl << ")" << endl;}
+    }
+
+    if(subp != string::npos){
+        size_t whitespace = item.find(' ', 6);
+        string price1 = item.substr(6, whitespace-6);
+        float firstprice = stof(price1);
+        string price2 = item.substr(whitespace+1);
+        float lastprice = stof(price2);
+
+        for (int i = 0; i < catAmount; i++){
+            if(strcmp(category,cat[i].category) == 0){
+                cout  << "Applications in Range ($" << firstprice << ",$" << lastprice << ") in Category: " << newCat << endl;
+                RangeP(firstprice, lastprice, temp[i].root, count);
+            }
+        }
+        if (count == 0){cout << "\tNo applications found in " << newCat << " for the given range ($" << firstprice << ",$" << lastprice << ")" << endl;}
+    }
+
+}
+
+
 
 // =================================================================
 // FUNCTIONS RELATED TO BST
@@ -207,16 +325,6 @@ int main() {
     queryAmount = stoi(currentLine);        // save number as query amount and run as many times as queries are needed.
     if (queryAmount == 0){ return 0; }
 
-    /*
-     * need to support:
-     * find app <app name>
-     * find category <category name>
-     * find price free <free>
-     * range <category name> price <low> <high>
-     * range <category name> app <low> <high>
-     * delete <category name> <app name>
-     * */
-
     while(getline(cin, currentLine)){
         size_t  findapp = currentLine.find("find app");
         size_t  findcat = currentLine.find("find category");
@@ -224,36 +332,38 @@ int main() {
         size_t range = currentLine.find("range");
         size_t delapp = currentLine.find("delete");
 
-        if (findapp != string::npos){                     // will update with future query calls later
+        if (findapp != string::npos){
             size_t q1 = currentLine.find('"');
             size_t q2 = currentLine.find('"', q1+1);
             searchItem = currentLine.substr(q1+1, q2-q1-1);
             search(searchItem, hash_table, tableSize);
+            cout << endl;
         }
 
-        if (findcat != string::npos){                     // will update with future query calls later
-           cout << "MADE IT TO FIND CAT" << endl;
-           searchItem = currentLine.substr(14 );
-
-           searchCategory(searchItem, cat, catAmount);
-
+        if (findcat != string::npos){
+            size_t q1 = currentLine.find('"');
+            size_t q2 = currentLine.find('"', q1+1);
+            searchItem = currentLine.substr(q1+1, q2-q1-1);
+            searchCategory(searchItem, cat, catAmount);
+            cout << endl;
         }
 
-        if (findprice != string::npos){                     // will update with future query calls later
-            cout << "MADE IT TO FREE " << endl;
-
-            for(int i = 0; i < catAmount; i++){
-                //searchfree(cat[i]);
-            }
+        if (findprice != string::npos){
+            searchFree(cat, catAmount);
         }
 
         if (range != string::npos){
-            cout << "MADE IT TO RANGE" << endl;
-            // will update with future query calls later
-            //searchItem = currentLine.substr(9 );
+            searchItem = currentLine;
+            size_t cq1 = searchItem.find('"');
+            size_t cq2 = searchItem.find('"', cq1 + 1 );
+            string category = searchItem.substr(cq1 + 1, cq2-cq1-1);
+            string subItem = searchItem.substr(cq2 + 2);
+
+            Range(subItem, category, cat, catAmount);
+            cout << endl;
         }
 
-        if (delapp != string::npos){                     // will update with future query calls later
+        if (delapp != string::npos){
 
             cout << "MADE IT TO DELETE APP" << endl;
             //searchItem = currentLine.substr(9 );
@@ -261,17 +371,5 @@ int main() {
 
     }
 
-    /*
-    for(int i = 0; i < queryAmount; i++){
-
-       getline(cin, currentLine);
-       size_t  findapp = currentLine.find("find app"); // this helps me determine which query is being called,
-        if (findapp != string::npos){                     // will update with future query calls later
-            searchItem = currentLine.substr(9 );
-        }
-        search(searchItem, hash_table, tableSize);
-        if(i < queryAmount-1){cout << endl;}
-    }
-     */
 return 0;
 }
