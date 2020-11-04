@@ -287,95 +287,82 @@ struct tree* DeleteTreeNode(struct tree* node, struct tree* root){
 }
 
 void DeleteSearch(string sApp, string sCategory, hash_table_entry *hashTable[], struct categories* cat, int catAmount, int tableSize, bool &isfound){
-    cout << "---- MADE IT TO DELETESEARCH FUNCTION ----" << endl;
+//cout << "MADE IT TO DELETESEARCH" << endl;
+
 
     const char *app = sApp.c_str();               // created newString for strcmp.
     const char *category = sCategory.c_str();
     int index = modulo(app, tableSize);                // finds the index where item should be at.
     hash_table_entry *head = hashTable[index];          // created a temp to make sure not to overwrite actual data.
-    hash_table_entry *temp = head;
+    hash_table_entry *node = head;
 
-    cout << "app = " << app << endl;
-    cout << "category = " << category << endl;
+    //cout << "App = " << app << endl;
+    //cout << "category = " << category << endl;
+    //cout << "head = " << head->app_name << endl;
+    //cout << "head->next->app_name = " << head->next->app_name << endl;
 
-    if(strcmp(head->app_name, app) == 0){
-        cout << "- made it to if(strcmp(head->app_name, app) == 0)" << endl;
+    if(strcmp(node->app_name, app) == 0){
+        //cout << "MADE IT TO STRCMP = 0" << endl;
         for (int i = 0; i < catAmount; i++){
             if(strcmp(cat[i].category, category) == 0) {
-
-                cout << "-- made it to if(strcmp(cat[i].category, category) == 0)" << endl;
                 cat[i].root = DeleteTreeNode(head->app_node, cat[i].root);
-                cout << "---- CATEGORY AFTER DELETETREENODE" << endl;
-                searchCategory(category, cat, catAmount);
-
-                cout << "-- made it out of DeleteTreeNode(head->app_node, cat[i].root);" << endl;
-                cout << "-- head = " << head->app_name << endl;
-                cout << "-- temp = " << temp->app_name << endl;
-
-                if(head->next != NULL) {
-                    cout << "--- made it to second if if(head->next != NULL)" << endl;
-                    strcpy(head->app_name, head->next->app_name);
-                    head = head->next;
-                    head->next = head->next->next;
-                }
-
-                delete(temp);
-                isfound = true;
-                return;
+               break;
             }
         }
+        //cout << "DELETED NODE FROM BST - " << endl;
+        if(head->next->app_name != NULL) {
+            strcpy(head->app_name, head->next->app_name);
+            //cout << "STRCPY IS NOT THE ISSUE" << endl;
+            head->app_node = head->next->app_node;
+            //cout << "HEAD->APP_NODE = HEAD->NEXT->APP_NODE IS NOT THE ISSUE" << endl;
+            node = head->next;
+            //cout << "NODE = HEAD->NEXT IS NOT THE ISSUE" << endl;
+            head->next = head->next->next;
+            //cout << "HEAD->NEXT = HEAD->NEXT->NEXT IS NOT THE ISSUE" << endl;
+        }
+        delete(node);
+        cout << "Application " << app << " from Category " << category << " successfully deleted." << endl;
+        isfound = true;
+        return;
     }
 
     else{
-        hash_table_entry * prev = temp;
-        temp = temp->next;
-        cout << "- made it to else statement" << endl;
-        while (prev != NULL) {
-
-            if (strcmp(temp->app_name, app) == 0) {
+        hash_table_entry * prev = node;
+        node = node->next;
+        while (node != NULL) {
+            if (strcmp(node->app_name, app) == 0) {
                 for (int i = 0; i < catAmount; i++) {
                     if (strcmp(cat[i].category, category) == 0) {
                         cat[i].root = DeleteTreeNode(head->app_node, cat[i].root);
-                        prev->next = prev->next->next;
-                        delete (temp);
-                        isfound = true;
-                        return;
                     }
                 }
+                strcpy(prev->next->app_name, prev->next->next->app_name);
+                prev->next = prev->next->next;
+                delete (node);
+                isfound = true;
+                cout << "Application " << app << " from Category " << category << " successfully deleted." << endl;
+                return;
             }
-
             prev = prev->next;
-            temp = temp->next;
+            node = node->next;
         }
     }
 
 }
 
 void DeleteApp(string searchItem, struct categories* cat, hash_table_entry *hashTable[], int catAmount, int tableSize){
-    cout << "---- MADE IT TO DELETEAPP FUNCTION ---- " << endl;
-
     size_t cq1 = searchItem.find('"');
     size_t cq2 = searchItem.find('"', cq1 + 1 );
     size_t aq1 = searchItem.find('"', cq2 + 1);
     size_t aq2 = searchItem.find('"', aq1 + 1 );
+
     string category = searchItem.substr(cq1+1, cq2-cq1-1);
     string app = searchItem.substr(aq1+1, aq2-aq1-1);
     bool isfound = false;
-    cout << "---- CATEGORY BEFORE DELETE APP" << endl;
-    searchCategory(category, cat, catAmount);
-
-    cout << "APP = " << app << endl;
-    cout << "CATEGORY = " << category << endl;
 
     DeleteSearch(app, category, hashTable, cat, catAmount, tableSize, isfound);
-    cout << "NOW SEARCHING FOR " << app << " IN HASH TABLE" << endl;
-    search( app, hashTable, tableSize);
-    cout << "IS FOUND = " << isfound << endl;
-    cout << "NOW SEARCHING FOR "<< app <<" IN BST" << endl;
-    searchCategory(category, cat, catAmount);
 
-
-
+    if(isfound == false){cout << "Application " << app << " not found in category " << category << "; unable to delete\n"; }
 }
 
 
@@ -513,6 +500,7 @@ int main() {
         if (delapp != string::npos){
             searchItem = currentLine;
             DeleteApp(searchItem, cat, hash_table, catAmount, tableSize);
+            cout << endl;
         }
 
     }
