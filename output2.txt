@@ -1,0 +1,591 @@
+		**** REPORT ****
+BST CATEGORY: Books
+TOTAL NODES: 8
+MAX HEIGHT: 4
+HEIGHT LEFT: 4
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Business
+TOTAL NODES: 11
+MAX HEIGHT: 5
+HEIGHT LEFT: 2
+HEIGHT RIGHT: 5
+
+BST CATEGORY: Catalogs
+TOTAL NODES: 7
+MAX HEIGHT: 5
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 0
+
+BST CATEGORY: Education
+TOTAL NODES: 9
+MAX HEIGHT: 3
+HEIGHT LEFT: 3
+HEIGHT RIGHT: 3
+
+BST CATEGORY: Entertainment
+TOTAL NODES: 13
+MAX HEIGHT: 7
+HEIGHT LEFT: 1
+HEIGHT RIGHT: 7
+
+BST CATEGORY: Finance
+TOTAL NODES: 7
+MAX HEIGHT: 3
+HEIGHT LEFT: 3
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Food & Drink
+TOTAL NODES: 12
+MAX HEIGHT: 5
+HEIGHT LEFT: 3
+HEIGHT RIGHT: 5
+
+BST CATEGORY: Games
+TOTAL NODES: 20
+MAX HEIGHT: 6
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 6
+
+BST CATEGORY: Health & Fitness
+TOTAL NODES: 10
+MAX HEIGHT: 4
+HEIGHT LEFT: 4
+HEIGHT RIGHT: 3
+
+BST CATEGORY: Kids
+TOTAL NODES: 7
+MAX HEIGHT: 3
+HEIGHT LEFT: 3
+HEIGHT RIGHT: 1
+
+BST CATEGORY: Lifestyle
+TOTAL NODES: 7
+MAX HEIGHT: 3
+HEIGHT LEFT: 2
+HEIGHT RIGHT: 3
+
+BST CATEGORY: Magazines & Newspapers
+TOTAL NODES: 6
+MAX HEIGHT: 3
+HEIGHT LEFT: 3
+HEIGHT RIGHT: 0
+
+BST CATEGORY: Medical
+TOTAL NODES: 7
+MAX HEIGHT: 4
+HEIGHT LEFT: 0
+HEIGHT RIGHT: 4
+
+BST CATEGORY: Music
+TOTAL NODES: 11
+MAX HEIGHT: 5
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 1
+
+BST CATEGORY: Navigation
+TOTAL NODES: 11
+MAX HEIGHT: 5
+HEIGHT LEFT: 1
+HEIGHT RIGHT: 5
+
+BST CATEGORY: News
+TOTAL NODES: 10
+MAX HEIGHT: 4
+HEIGHT LEFT: 2
+HEIGHT RIGHT: 4
+
+BST CATEGORY: Photo & Video
+TOTAL NODES: 7
+MAX HEIGHT: 4
+HEIGHT LEFT: 0
+HEIGHT RIGHT: 4
+
+BST CATEGORY: Productivity
+TOTAL NODES: 11
+MAX HEIGHT: 5
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 3
+
+BST CATEGORY: Reference
+TOTAL NODES: 5
+MAX HEIGHT: 2
+HEIGHT LEFT: 2
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Social Networking
+TOTAL NODES: 8
+MAX HEIGHT: 4
+HEIGHT LEFT: 4
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Sports
+TOTAL NODES: 12
+MAX HEIGHT: 5
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 3
+
+BST CATEGORY: Travel
+TOTAL NODES: 3
+MAX HEIGHT: 2
+HEIGHT LEFT: 0
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Utilities
+TOTAL NODES: 11
+MAX HEIGHT: 5
+HEIGHT LEFT: 5
+HEIGHT RIGHT: 2
+
+BST CATEGORY: Weather
+TOTAL NODES: 4
+MAX HEIGHT: 2
+HEIGHT LEFT: 1
+HEIGHT RIGHT: 2
+
+hash[0]:  	[0 <= 0 <= 4]
+hash[1]:  	[0 <= 0 <= 4]
+hash[2]:  	[0 <= 0 <= 4]
+hash[3]:  	[0 <= 0 <= 4]
+hash[4]:  	[0 <= 0 <= 4]
+hash[5]:  	[0 <= 0 <= 4]
+hash[6]:  	[0 <= 0 <= 4]
+hash[7]:  	[0 <= 0 <= 4]
+hash[8]: ->Dunkin' Donuts 	[0 <= 1 <= 4]
+hash[9]:  	[0 <= 0 <= 4]
+hash[10]:  	[0 <= 0 <= 4]
+hash[11]:  	[0 <= 0 <= 4]
+hash[12]:  	[0 <= 0 <= 4]
+hash[13]:  	[0 <= 0 <= 4]
+hash[14]: ->The Weather Channel 	[0 <= 1 <= 4]
+hash[15]:  	[0 <= 0 <= 4]
+hash[16]:  	[0 <= 0 <= 4]
+hash[17]:  	[0 <= 0 <= 4]
+hash[18]:  	[0 <= 0 <= 4]
+hash[19]: ->Fantastical 2 for iPhone 	[0 <= 1 <= 4]
+hash[20]: ->ClassDojo 	[0 <= 1 <= 4]
+hash[21]: ->BTN2Go ->WhatsApp Messenger 	[0 <= 2 <= 4]
+hash[22]:  	[0 <= 0 <= 4]
+hash[23]:  	[0 <= 0 <= 4]
+hash[24]:  	[0 <= 0 <= 4]
+hash[25]:  	[0 <= 0 <= 4]
+hash[26]: ->Essential Anatomy 5 	[0 <= 1 <= 4]
+hash[27]:  	[0 <= 0 <= 4]
+hash[28]:  	[0 <= 0 <= 4]
+hash[29]: ->Gmail - email from Google 	[0 <= 1 <= 4]
+hash[30]: ->Bank of America 	[0 <= 1 <= 4]
+hash[31]:  	[0 <= 0 <= 4]
+hash[32]:  	[0 <= 0 <= 4]
+hash[33]:  	[0 <= 0 <= 4]
+hash[34]:  	[0 <= 0 <= 4]
+hash[35]:  	[0 <= 0 <= 4]
+hash[36]: ->QR Reader for iPhone 	[0 <= 1 <= 4]
+hash[37]:  	[0 <= 0 <= 4]
+hash[38]: ->PhotoMath 	[0 <= 1 <= 4]
+hash[39]:  	[0 <= 0 <= 4]
+hash[40]: ->FanDuel: One Day Fantasy Sports Leagues 	[0 <= 1 <= 4]
+hash[41]:  	[0 <= 0 <= 4]
+hash[42]:  	[0 <= 0 <= 4]
+hash[43]:  	[0 <= 0 <= 4]
+hash[44]: ->iCatcher! Podcast Player 	[0 <= 1 <= 4]
+hash[45]: ->Star Walk 2 	[0 <= 1 <= 4]
+hash[46]: ->Elmo Calls ->McDonald's 	[0 <= 2 <= 4]
+hash[47]:  	[0 <= 0 <= 4]
+hash[48]:  	[0 <= 0 <= 4]
+hash[49]:  	[0 <= 0 <= 4]
+hash[50]: ->Pocket God 	[0 <= 1 <= 4]
+hash[51]: ->SoundCloud - Music & Audio 	[0 <= 1 <= 4]
+hash[52]:  	[0 <= 0 <= 4]
+hash[53]: ->Yahoo Mail 	[0 <= 1 <= 4]
+hash[54]: ->HBO NOW 	[0 <= 1 <= 4]
+hash[55]: ->Police Scanner+ Free 	[0 <= 1 <= 4]
+hash[56]: ->Instagram 	[0 <= 1 <= 4]
+hash[57]:  	[0 <= 0 <= 4]
+hash[58]:  	[0 <= 0 <= 4]
+hash[59]: ->Messenger 	[0 <= 1 <= 4]
+hash[60]: ->Purify Blocker 	[0 <= 1 <= 4]
+hash[61]: ->iTunes Connect 	[0 <= 1 <= 4]
+hash[62]: ->myAT&T 	[0 <= 1 <= 4]
+hash[63]:  	[0 <= 0 <= 4]
+hash[64]:  	[0 <= 0 <= 4]
+hash[65]:  	[0 <= 0 <= 4]
+hash[66]:  	[0 <= 0 <= 4]
+hash[67]:  	[0 <= 0 <= 4]
+hash[68]: ->Starbucks 	[0 <= 1 <= 4]
+hash[69]:  	[0 <= 0 <= 4]
+hash[70]:  	[0 <= 0 <= 4]
+hash[71]:  	[0 <= 0 <= 4]
+hash[72]:  	[0 <= 0 <= 4]
+hash[73]:  	[0 <= 0 <= 4]
+hash[74]:  	[0 <= 0 <= 4]
+hash[75]:  	[0 <= 0 <= 4]
+hash[76]: ->Jo-Ann 	[0 <= 1 <= 4]
+hash[77]:  	[0 <= 0 <= 4]
+hash[78]: ->Univision Deportes ->Stylebook ->Adobe Acrobat Reader 	[0 <= 3 <= 4]
+hash[79]:  	[0 <= 0 <= 4]
+hash[80]: ->Pinterest ->Sleep Pillow Sounds 	[0 <= 2 <= 4]
+hash[81]: ->National Geographic Magazine ->xTube 	[0 <= 2 <= 4]
+hash[82]:  	[0 <= 0 <= 4]
+hash[83]: ->Shazam - Discover music, artists, videos & lyrics 	[0 <= 1 <= 4]
+hash[84]: ->Tollsmart 	[0 <= 1 <= 4]
+hash[85]:  	[0 <= 0 <= 4]
+hash[86]:  	[0 <= 0 <= 4]
+hash[87]:  	[0 <= 0 <= 4]
+hash[88]: ->Plague Inc. 	[0 <= 1 <= 4]
+hash[89]:  	[0 <= 0 <= 4]
+hash[90]: ->MotionX GPC 	[0 <= 1 <= 4]
+hash[91]:  	[0 <= 0 <= 4]
+hash[92]:  	[0 <= 0 <= 4]
+hash[93]: ->Snap Upload for snapchat 	[0 <= 1 <= 4]
+hash[94]:  	[0 <= 0 <= 4]
+hash[95]: ->Boating USA 	[0 <= 1 <= 4]
+hash[96]: ->TeamSpeak 3 	[0 <= 1 <= 4]
+hash[97]: ->Geekbench 3 ->Swype 	[0 <= 2 <= 4]
+hash[98]:  	[0 <= 0 <= 4]
+hash[99]:  	[0 <= 0 <= 4]
+hash[100]:  	[0 <= 0 <= 4]
+hash[101]:  	[0 <= 0 <= 4]
+hash[102]:  	[0 <= 0 <= 4]
+hash[103]:  	[0 <= 0 <= 4]
+hash[104]: ->Transit Directions by Moovit 	[0 <= 1 <= 4]
+hash[105]: ->Overcast: Podcast Player 	[0 <= 1 <= 4]
+hash[106]:  	[0 <= 0 <= 4]
+hash[107]:  	[0 <= 0 <= 4]
+hash[108]:  	[0 <= 0 <= 4]
+hash[109]:  	[0 <= 0 <= 4]
+hash[110]:  	[0 <= 0 <= 4]
+hash[111]:  	[0 <= 0 <= 4]
+hash[112]:  	[0 <= 0 <= 4]
+hash[113]: ->Psych! 	[0 <= 1 <= 4]
+hash[114]:  	[0 <= 0 <= 4]
+hash[115]:  	[0 <= 0 <= 4]
+hash[116]: ->BillMinder 	[0 <= 1 <= 4]
+hash[117]: ->Toca Hair Salon 2 	[0 <= 1 <= 4]
+hash[118]:  	[0 <= 0 <= 4]
+hash[119]:  	[0 <= 0 <= 4]
+hash[120]: ->Sago Mini Babies 	[0 <= 1 <= 4]
+hash[121]: ->Touch Surgery, Surgical Simulator ->Cosmopolitan Magazine US 	[0 <= 2 <= 4]
+hash[122]: ->Geocaching ->PAW Patrol Rescue Run 	[0 <= 2 <= 4]
+hash[123]: ->Candy Crush Soda Saga 	[0 <= 1 <= 4]
+hash[124]: ->Wake Alarm Clock ->Baby Heartbeats 	[0 <= 2 <= 4]
+hash[125]:  	[0 <= 0 <= 4]
+hash[126]: ->City Maps 2Go Pro 	[0 <= 1 <= 4]
+hash[127]: ->EWallpaper 	[0 <= 1 <= 4]
+hash[128]: ->Sonic Dash 2 	[0 <= 1 <= 4]
+hash[129]: ->ThemeLocks ->YL Oils & Young Living Oils 	[0 <= 2 <= 4]
+hash[130]:  	[0 <= 0 <= 4]
+hash[131]:  	[0 <= 0 <= 4]
+hash[132]:  	[0 <= 0 <= 4]
+hash[133]:  	[0 <= 0 <= 4]
+hash[134]:  	[0 <= 0 <= 4]
+hash[135]:  	[0 <= 0 <= 4]
+hash[136]: ->Forbes Magazine 	[0 <= 1 <= 4]
+hash[137]:  	[0 <= 0 <= 4]
+hash[138]: ->DailyMVP: Daily Fantasy Sports 	[0 <= 1 <= 4]
+hash[139]:  	[0 <= 0 <= 4]
+hash[140]:  	[0 <= 0 <= 4]
+hash[141]:  	[0 <= 0 <= 4]
+hash[142]:  	[0 <= 0 <= 4]
+hash[143]:  	[0 <= 0 <= 4]
+hash[144]: ->PayPal 	[0 <= 1 <= 4]
+hash[145]:  	[0 <= 0 <= 4]
+hash[146]:  	[0 <= 0 <= 4]
+hash[147]:  	[0 <= 0 <= 4]
+hash[148]:  	[0 <= 0 <= 4]
+hash[149]:  	[0 <= 0 <= 4]
+hash[150]:  	[0 <= 0 <= 4]
+hash[151]: ->Pandora - Free Music & Radio 	[0 <= 1 <= 4]
+hash[152]: ->Flashlight ->Google Docs 	[0 <= 2 <= 4]
+hash[153]: ->hocus. 	[0 <= 1 <= 4]
+hash[154]: ->Scribblenauts Remix ->doTERRA 	[0 <= 2 <= 4]
+hash[155]:  	[0 <= 0 <= 4]
+hash[156]: ->Afterlight ->GoodRx 	[0 <= 2 <= 4]
+hash[157]:  	[0 <= 0 <= 4]
+hash[158]:  	[0 <= 0 <= 4]
+hash[159]: ->Ultimate Guitar Tabs 	[0 <= 1 <= 4]
+hash[160]: ->Google Maps 	[0 <= 1 <= 4]
+hash[161]: ->Fit Men Cook ->HomeBudget with Sync 	[0 <= 2 <= 4]
+hash[162]:  	[0 <= 0 <= 4]
+hash[163]:  	[0 <= 0 <= 4]
+hash[164]:  	[0 <= 0 <= 4]
+hash[165]:  	[0 <= 0 <= 4]
+hash[166]: ->Google 	[0 <= 1 <= 4]
+hash[167]: ->Chrome 	[0 <= 1 <= 4]
+hash[168]:  	[0 <= 0 <= 4]
+hash[169]:  	[0 <= 0 <= 4]
+hash[170]: ->Medium ->The Wonder Weeks 	[0 <= 2 <= 4]
+hash[171]: ->Fitbit 	[0 <= 1 <= 4]
+hash[172]:  	[0 <= 0 <= 4]
+hash[173]: ->Project Color by The Home Depot 	[0 <= 1 <= 4]
+hash[174]:  	[0 <= 0 <= 4]
+hash[175]: ->Tinder 	[0 <= 1 <= 4]
+hash[176]: ->Phone Tracker for iPhones 	[0 <= 1 <= 4]
+hash[177]: ->Square Register 	[0 <= 1 <= 4]
+hash[178]: ->Minecraft: Pocket Edition 	[0 <= 1 <= 4]
+hash[179]:  	[0 <= 0 <= 4]
+hash[180]:  	[0 <= 0 <= 4]
+hash[181]: ->Rainbow Loom Pro 	[0 <= 1 <= 4]
+hash[182]:  	[0 <= 0 <= 4]
+hash[183]:  	[0 <= 0 <= 4]
+hash[184]:  	[0 <= 0 <= 4]
+hash[185]: ->GIF Keyboard 	[0 <= 1 <= 4]
+hash[186]: ->Tiny Scanner Pro 	[0 <= 1 <= 4]
+hash[187]:  	[0 <= 0 <= 4]
+hash[188]: ->Follow Boss 	[0 <= 1 <= 4]
+hash[189]:  	[0 <= 0 <= 4]
+hash[190]:  	[0 <= 0 <= 4]
+hash[191]: ->djay 2 for iPhone 	[0 <= 1 <= 4]
+hash[192]:  	[0 <= 0 <= 4]
+hash[193]: ->Mixologist 	[0 <= 1 <= 4]
+hash[194]: ->College Football Radio & Live Scores! 	[0 <= 1 <= 4]
+hash[195]:  	[0 <= 0 <= 4]
+hash[196]:  	[0 <= 0 <= 4]
+hash[197]:  	[0 <= 0 <= 4]
+hash[198]: ->Stack the States 	[0 <= 1 <= 4]
+hash[199]: ->Printer Pro 	[0 <= 1 <= 4]
+hash[200]:  	[0 <= 0 <= 4]
+hash[201]:  	[0 <= 0 <= 4]
+hash[202]:  	[0 <= 0 <= 4]
+hash[203]:  	[0 <= 0 <= 4]
+hash[204]: ->Abby Lee Dance Secrets 	[0 <= 1 <= 4]
+hash[205]:  	[0 <= 0 <= 4]
+hash[206]:  	[0 <= 0 <= 4]
+hash[207]:  	[0 <= 0 <= 4]
+hash[208]:  	[0 <= 0 <= 4]
+hash[209]:  	[0 <= 0 <= 4]
+hash[210]:  	[0 <= 0 <= 4]
+hash[211]:  	[0 <= 0 <= 4]
+hash[212]:  	[0 <= 0 <= 4]
+hash[213]: ->Sing! Karaoke by Smule ->Indeed Job Search 	[0 <= 2 <= 4]
+hash[214]:  	[0 <= 0 <= 4]
+hash[215]:  	[0 <= 0 <= 4]
+hash[216]:  	[0 <= 0 <= 4]
+hash[217]: ->PBS KIDS Video ->Balloons TD 5 	[0 <= 2 <= 4]
+hash[218]:  	[0 <= 0 <= 4]
+hash[219]:  	[0 <= 0 <= 4]
+hash[220]:  	[0 <= 0 <= 4]
+hash[221]:  	[0 <= 0 <= 4]
+hash[222]: ->AccuWeather 	[0 <= 1 <= 4]
+hash[223]:  	[0 <= 0 <= 4]
+hash[224]: ->FOX Sports GO 	[0 <= 1 <= 4]
+hash[225]:  	[0 <= 0 <= 4]
+hash[226]: ->Premium Music for Spotify 	[0 <= 1 <= 4]
+hash[227]: ->1010! 	[0 <= 1 <= 4]
+hash[228]:  	[0 <= 0 <= 4]
+hash[229]: ->CNN App for iPhone 	[0 <= 1 <= 4]
+hash[230]: ->MLB.com At Bat 	[0 <= 1 <= 4]
+hash[231]:  	[0 <= 0 <= 4]
+hash[232]:  	[0 <= 0 <= 4]
+hash[233]: ->7-Eleven, Inc. 	[0 <= 1 <= 4]
+hash[234]:  	[0 <= 0 <= 4]
+hash[235]:  	[0 <= 0 <= 4]
+hash[236]:  	[0 <= 0 <= 4]
+hash[237]:  	[0 <= 0 <= 4]
+hash[238]: ->Chase Mobile 	[0 <= 1 <= 4]
+hash[239]:  	[0 <= 0 <= 4]
+hash[240]: ->Monogram it! 	[0 <= 1 <= 4]
+hash[241]: ->iTrans NYC Subway 	[0 <= 1 <= 4]
+hash[242]: ->Reeder 2 ->NYTimes 	[0 <= 2 <= 4]
+hash[243]:  	[0 <= 0 <= 4]
+hash[244]: ->7 Minute Workout Challenge 	[0 <= 1 <= 4]
+hash[245]:  	[0 <= 0 <= 4]
+hash[246]:  	[0 <= 0 <= 4]
+hash[247]:  	[0 <= 0 <= 4]
+hash[248]: ->GrubHub 	[0 <= 1 <= 4]
+hash[249]:  	[0 <= 0 <= 4]
+hash[250]: ->Plane Finder 	[0 <= 1 <= 4]
+hash[251]:  	[0 <= 0 <= 4]
+hash[252]:  	[0 <= 0 <= 4]
+hash[253]: ->Hype Machine 	[0 <= 1 <= 4]
+hash[254]:  	[0 <= 0 <= 4]
+hash[255]:  	[0 <= 0 <= 4]
+hash[256]:  	[0 <= 0 <= 4]
+hash[257]: ->MyChart ->DC Comics: Batman #1 	[0 <= 2 <= 4]
+hash[258]:  	[0 <= 0 <= 4]
+hash[259]: ->SkyDroid - Golf GPS ->IronMobile - Ironman Athlete Tracker 	[0 <= 2 <= 4]
+hash[260]:  	[0 <= 0 <= 4]
+hash[261]: ->Mad Libs 	[0 <= 1 <= 4]
+hash[262]: ->Google Translate ->Ocarina 	[0 <= 2 <= 4]
+hash[263]: ->Dataman Next 	[0 <= 1 <= 4]
+hash[264]: ->Loopy HD 	[0 <= 1 <= 4]
+hash[265]: ->Google Drive 	[0 <= 1 <= 4]
+hash[266]: ->YouTube Kids ->TapeACallPro 	[0 <= 2 <= 4]
+hash[267]: ->Google Classroom ->Scanner Pro by Readdle 	[0 <= 2 <= 4]
+hash[268]: ->NOAA Radar Pro 	[0 <= 1 <= 4]
+hash[269]: ->Zombies, Run! ->Bowling King 	[0 <= 2 <= 4]
+hash[270]:  	[0 <= 0 <= 4]
+hash[271]:  	[0 <= 0 <= 4]
+hash[272]: ->Finished Results Live 	[0 <= 1 <= 4]
+hash[273]:  	[0 <= 0 <= 4]
+hash[274]: ->Weather Live ->Domino's Pizza USA 	[0 <= 2 <= 4]
+hash[275]:  	[0 <= 0 <= 4]
+hash[276]:  	[0 <= 0 <= 4]
+hash[277]:  	[0 <= 0 <= 4]
+hash[278]: ->YouTube ->Pocket Casts 	[0 <= 2 <= 4]
+hash[279]:  	[0 <= 0 <= 4]
+hash[280]: ->IntelliDrink PRO - Blood Alcohol Content Calculator 	[0 <= 1 <= 4]
+hash[281]:  	[0 <= 0 <= 4]
+hash[282]:  	[0 <= 0 <= 4]
+hash[283]:  	[0 <= 0 <= 4]
+hash[284]: ->iHandy Translator Pro ->Color Splash 	[0 <= 2 <= 4]
+hash[285]:  	[0 <= 0 <= 4]
+hash[286]:  	[0 <= 0 <= 4]
+hash[287]:  	[0 <= 0 <= 4]
+hash[288]:  	[0 <= 0 <= 4]
+hash[289]: ->Full Fitness 	[0 <= 1 <= 4]
+hash[290]:  	[0 <= 0 <= 4]
+hash[291]: ->Netflix 	[0 <= 1 <= 4]
+hash[292]:  	[0 <= 0 <= 4]
+hash[293]:  	[0 <= 0 <= 4]
+hash[294]: ->My Verizon Mobile 	[0 <= 1 <= 4]
+hash[295]: ->Dropbox ->Colorfy 	[0 <= 2 <= 4]
+hash[296]:  	[0 <= 0 <= 4]
+hash[297]: ->Facebook Pages Manager 	[0 <= 1 <= 4]
+hash[298]: ->Billionaire. 	[0 <= 1 <= 4]
+hash[299]: ->Crystal 	[0 <= 1 <= 4]
+hash[300]: ->Forks Over Knives 	[0 <= 1 <= 4]
+hash[301]:  	[0 <= 0 <= 4]
+hash[302]: ->Superimpose 	[0 <= 1 <= 4]
+hash[303]:  	[0 <= 0 <= 4]
+hash[304]:  	[0 <= 0 <= 4]
+hash[305]:  	[0 <= 0 <= 4]
+hash[306]:  	[0 <= 0 <= 4]
+hash[307]: ->Fox News 	[0 <= 1 <= 4]
+hash[308]: ->Heads Up! ->Sherlock: Interative Adventure 	[0 <= 2 <= 4]
+hash[309]:  	[0 <= 0 <= 4]
+hash[310]: ->ESPN ->iTunes U 	[0 <= 2 <= 4]
+hash[311]: ->Tattoo Fonts 	[0 <= 1 <= 4]
+hash[312]:  	[0 <= 0 <= 4]
+hash[313]:  	[0 <= 0 <= 4]
+hash[314]:  	[0 <= 0 <= 4]
+hash[315]:  	[0 <= 0 <= 4]
+hash[316]: ->Twitter 	[0 <= 1 <= 4]
+hash[317]:  	[0 <= 0 <= 4]
+hash[318]:  	[0 <= 0 <= 4]
+hash[319]: ->Paprika Recipe Manager 	[0 <= 1 <= 4]
+hash[320]: ->Tweetbot 4 for Twitter 	[0 <= 1 <= 4]
+hash[321]:  	[0 <= 0 <= 4]
+hash[322]:  	[0 <= 0 <= 4]
+hash[323]: ->Where's my MBTA Bus? 	[0 <= 1 <= 4]
+hash[324]: ->TED Books 	[0 <= 1 <= 4]
+hash[325]: ->Nike+ Running 	[0 <= 1 <= 4]
+hash[326]:  	[0 <= 0 <= 4]
+hash[327]: ->Stride & Prejudice 	[0 <= 1 <= 4]
+hash[328]:  	[0 <= 0 <= 4]
+hash[329]:  	[0 <= 0 <= 4]
+hash[330]: ->Game of Life Classic Edition 	[0 <= 1 <= 4]
+hash[331]:  	[0 <= 0 <= 4]
+hash[332]:  	[0 <= 0 <= 4]
+hash[333]:  	[0 <= 0 <= 4]
+hash[334]:  	[0 <= 0 <= 4]
+hash[335]:  	[0 <= 0 <= 4]
+hash[336]: ->WolframAlpha 	[0 <= 1 <= 4]
+hash[337]: ->Toca Kitchen 2 	[0 <= 1 <= 4]
+hash[338]:  	[0 <= 0 <= 4]
+hash[339]:  	[0 <= 0 <= 4]
+hash[340]: ->Wish - Shopping Made Fun 	[0 <= 1 <= 4]
+hash[341]:  	[0 <= 0 <= 4]
+hash[342]:  	[0 <= 0 <= 4]
+hash[343]:  	[0 <= 0 <= 4]
+hash[344]:  	[0 <= 0 <= 4]
+hash[345]:  	[0 <= 0 <= 4]
+hash[346]:  	[0 <= 0 <= 4]
+hash[347]:  	[0 <= 0 <= 4]
+hash[348]:  	[0 <= 0 <= 4]
+hash[349]: ->HotSchedules 	[0 <= 1 <= 4]
+hash[350]:  	[0 <= 0 <= 4]
+hash[351]:  	[0 <= 0 <= 4]
+hash[352]: ->Daily Craigslist Unlimited 	[0 <= 1 <= 4]
+hash[353]:  	[0 <= 0 <= 4]
+hash[354]:  	[0 <= 0 <= 4]
+hash[355]: ->Facebook 	[0 <= 1 <= 4]
+hash[356]:  	[0 <= 0 <= 4]
+hash[357]:  	[0 <= 0 <= 4]
+hash[358]:  	[0 <= 0 <= 4]
+hash[359]:  	[0 <= 0 <= 4]
+hash[360]: ->BuzzFeed 	[0 <= 1 <= 4]
+hash[361]:  	[0 <= 0 <= 4]
+hash[362]:  	[0 <= 0 <= 4]
+hash[363]: ->VIP Pool Party 	[0 <= 1 <= 4]
+hash[364]:  	[0 <= 0 <= 4]
+hash[365]:  	[0 <= 0 <= 4]
+hash[366]: ->Snagajob 	[0 <= 1 <= 4]
+hash[367]: ->Scout GPS Navigation, ETA, Maps & Traffic 	[0 <= 1 <= 4]
+hash[368]:  	[0 <= 0 <= 4]
+hash[369]:  	[0 <= 0 <= 4]
+hash[370]:  	[0 <= 0 <= 4]
+hash[371]:  	[0 <= 0 <= 4]
+hash[372]: ->Facetune 	[0 <= 1 <= 4]
+hash[373]:  	[0 <= 0 <= 4]
+hash[374]: ->WatchESPN ->Badoo Premium ->Sky Guide: View Stars Night or Day ->Shopkins Magazine 	[0 <= 4 <= 4]
+hash[375]: ->Hair Color Dye 	[0 <= 1 <= 4]
+hash[376]:  	[0 <= 0 <= 4]
+hash[377]:  	[0 <= 0 <= 4]
+hash[378]:  	[0 <= 0 <= 4]
+hash[379]: ->Snapchat 	[0 <= 1 <= 4]
+hash[380]:  	[0 <= 0 <= 4]
+hash[381]: ->Akinator the Genie 	[0 <= 1 <= 4]
+hash[382]: ->PAUSE ->Geometry Dash 	[0 <= 2 <= 4]
+hash[383]:  	[0 <= 0 <= 4]
+hash[384]: ->Dubsmash 	[0 <= 1 <= 4]
+hash[385]: ->eBay 	[0 <= 1 <= 4]
+hash[386]:  	[0 <= 0 <= 4]
+hash[387]:  	[0 <= 0 <= 4]
+hash[388]: ->FIFA 16 Ultimate Team 	[0 <= 1 <= 4]
+hash[389]:  	[0 <= 0 <= 4]
+hash[390]: ->Fitness Buddy ->Sleep Cycle alarm clock ->Need for Speed 	[0 <= 3 <= 4]
+hash[391]: ->The Wall Street Journal 	[0 <= 1 <= 4]
+hash[392]:  	[0 <= 0 <= 4]
+hash[393]:  	[0 <= 0 <= 4]
+hash[394]:  	[0 <= 0 <= 4]
+hash[395]:  	[0 <= 0 <= 4]
+hash[396]: ->Photo Plastic 	[0 <= 1 <= 4]
+hash[397]:  	[0 <= 0 <= 4]
+hash[398]: ->Uber 	[0 <= 1 <= 4]
+hash[399]:  	[0 <= 0 <= 4]
+hash[400]:  	[0 <= 0 <= 4]
+hash[401]: ->Sky Whale 	[0 <= 1 <= 4]
+hash[402]: ->Vine 	[0 <= 1 <= 4]
+hash[403]: ->What's On? 	[0 <= 1 <= 4]
+hash[404]:  	[0 <= 0 <= 4]
+hash[405]: ->iDownloads PLUS FREE ->The Walking Dead: No Man's Land 	[0 <= 2 <= 4]
+hash[406]:  	[0 <= 0 <= 4]
+hash[407]:  	[0 <= 0 <= 4]
+hash[408]: ->Weird But True 	[0 <= 1 <= 4]
+hash[409]:  	[0 <= 0 <= 4]
+hash[410]: ->Yelp 	[0 <= 1 <= 4]
+hash[411]:  	[0 <= 0 <= 4]
+hash[412]:  	[0 <= 0 <= 4]
+hash[413]:  	[0 <= 0 <= 4]
+hash[414]: ->Microsoft Outlook ->Hulu 	[0 <= 2 <= 4]
+hash[415]:  	[0 <= 0 <= 4]
+hash[416]: ->Skeletal Anatomy 3D 	[0 <= 1 <= 4]
+hash[417]: ->Spotify Music ->Emoji 3 PRO 	[0 <= 2 <= 4]
+hash[418]:  	[0 <= 0 <= 4]
+hash[419]:  	[0 <= 0 <= 4]
+hash[420]:  	[0 <= 0 <= 4]
+hash[421]: ->PewDiePie ->Poems by Heart 	[0 <= 2 <= 4]
+hash[422]: ->Dude, your car! ->Jubitron the Girl Robot 	[0 <= 2 <= 4]
+hash[423]:  	[0 <= 0 <= 4]
+hash[424]: ->Pizza Hut 	[0 <= 1 <= 4]
+hash[425]:  	[0 <= 0 <= 4]
+hash[426]:  	[0 <= 0 <= 4]
+hash[427]:  	[0 <= 0 <= 4]
+hash[428]: ->MapQuest: Free Navigation, GPC, Maps & Traffic ->Toca Life: City 	[0 <= 2 <= 4]
+hash[429]:  	[0 <= 0 <= 4]
+hash[430]: ->Al Gore -- Our Choice: A Plan to Solve the Climate Crisis 	[0 <= 1 <= 4]
+hash[431]:  	[0 <= 0 <= 4]
+hash[432]: ->MealBoard 	[0 <= 1 <= 4]
+hash[433]:  	[0 <= 0 <= 4]
+hash[434]:  	[0 <= 0 <= 4]
+hash[435]: ->Smashy Road: Wanted 	[0 <= 1 <= 4]
+hash[436]:  	[0 <= 0 <= 4]
+hash[437]:  	[0 <= 0 <= 4]
+hash[438]:  	[0 <= 0 <= 4]
+APP AMOUNT = 217
+
+TABLESIZE = 439
+
+LOAD FACTOR = N/M = (APP AMOUNT)/(TABLE SIZE) = 0.49
+MAX NODES = 4
+
