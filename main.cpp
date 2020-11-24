@@ -76,6 +76,27 @@ void hash_insert(struct tree* node, struct hash_table_entry *temp[], int tableSi
     newEntry->next = temp[index];                               // push currentApp to the head of list, if list is null, newEntry->next
     temp[index] = newEntry;                                    // allocates more memory and makes it NULL in case of new data
 }
+// =================================================================
+// FUNCTIONS RELATED TO BST
+struct tree* newNode(struct app_info currentApp) { // function to create a new node and store the currentApp
+    struct tree *temp = new tree();
+    temp->record = currentApp;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+
+struct tree* insert(struct tree* treenode,  struct app_info currentApp, struct hash_table_entry *hashelement[], int tableSize){
+    if (treenode == NULL){                              // if a tree is empty, return a new node, or find the emptry node it belongs to
+        struct tree *nodetemp = newNode(currentApp);
+        hash_insert(nodetemp, hashelement, tableSize);  // this will insert the given app into the hash table
+        return nodetemp;                                // after finding the location the currentApp belongs to.
+    }
+    if (strcmp(currentApp.app_name, treenode->record.app_name) <= 0){
+        treenode->left = insert(treenode->left, currentApp, hashelement, tableSize);
+    }
+    else{treenode->right = insert(treenode->right, currentApp, hashelement, tableSize);}
+    return treenode;
+}
 
 // =====================================================================================
 // functions related to queries
@@ -99,7 +120,7 @@ void search(string item, hash_table_entry *hashTable[], int tableSize){
     }
     if(temp == NULL){cout <<"Application " << item << " not found." << endl; }
 }
-void CATinorder(struct tree* root){
+void CATinorder(struct tree* root){ // used for searchCategory function. this prints out each app in the category
     if(root != NULL){
         CATinorder(root->left);
         cout << "\t" << root->record.app_name << endl;
@@ -107,7 +128,7 @@ void CATinorder(struct tree* root){
     }
 }
 
-void searchCategory(string item, struct categories *cat, int catAmount){
+void searchCategory(string item, struct categories *cat, int catAmount){ // used for "find category "example" "
     const char *newString = item.c_str();
     bool found = false;
 
@@ -122,44 +143,69 @@ void searchCategory(string item, struct categories *cat, int catAmount){
     if(found == false){cout << "Category " << item << " not found." << endl;}
 }
 
-void FREEinorder(struct tree* root, int &count){
-    if(root != NULL){
-        FREEinorder(root->left, count);
+void FREEinorder(struct tree* root, bool &isfound, bool &base){ // extension of finding free apps
+
+	if(root != NULL){
+        FREEinorder(root->left, isfound, base);
+
         if(root->record.price == 0){
+			isfound = true;
+			if(isfound == true && base == true){
+				cout << "Free Applications in Category: " << root->record.category << endl;
+				base = false;
+			}
             cout << "\t" << root->record.app_name << endl;
-            count++;
+
         }
-        FREEinorder(root->right, count);
+        FREEinorder(root->right, isfound, base);
     }
 }
 
-void searchFree(struct categories *cat, int catAmount){
-    for (int i = 0; i < catAmount; i++){
-        int count = 0;
-        tree* temp = cat[i].root;
-        cout << "Free Applications in Category: " << cat[i].category << endl;
-        if(cat[i].root == NULL){cout << "\tNo free applications found." << endl;}
-        else{
-            FREEinorder(temp, count);
-            if(count == 0) {cout << "\tNo free applications found." << endl;}
-        }
-        cout << endl;
-    }
+void FREEcheck(tree *root, bool &nonefound){
+	if(root!=NULL){
+		FREEcheck(root->left, nonefound);
+		if(root->record.price == 0){
+			nonefound = false;
+		}
+		FREEcheck(root->right, nonefound);
+	}
 }
 
-void RangeA(string firstl, string lastl, struct tree* root, int &count, bool &isfound, bool &base){
-    if(root != NULL){
+void searchFree(struct categories *cat, int catAmount){// used for "find price free"
+    bool nonefound = true;
+
+    for(int i = 0; i < catAmount; i++){FREEcheck(cat[i].root, nonefound);}
+
+    if(nonefound == false){
+    	for(int i = 0; i < catAmount; i++){
+    		bool isfound = false;
+    		bool base = true;
+			//cout << "Free Applications in Category: " << cat[i].category << endl;
+			if(cat[i].root == NULL){cout << "No free applications found in category " << cat[i].category << "." << endl;}
+			else{
+				FREEinorder(cat[i].root, isfound, base);
+				if(isfound == false) {cout << "No free applications found in category " << cat[i].category << "." << endl;}
+			}
+			cout << endl;
+		}
+    }
+    else{cout << "No free applications found." << endl << endl;}
+
+}
+
+void RangeA(string firstl, string lastl, struct tree* root, int &count, bool &isfound, bool &base){ // specifc to find range of apps
+    if(root != NULL){                                                                               // based off characters
         RangeA(firstl, lastl, root->left, count, isfound, base);
 
         const char* first = firstl.c_str();
         const char* last = lastl.c_str();
-        string app = root->record.app_name;
-        string firstletters = app.substr(0,firstl.length());
-        string lastletters = app.substr(0, lastl.length());
-        const char* comp = firstletters.c_str();
-        const char* comp2 = lastletters.c_str();
+        //string app = root->record.app_name;
+        //string firstletters = app.substr(0,firstl.length());
+        //string lastletters = app.substr(0, lastl.length());
+        //const char* comp = firstletters.c_str();
+        //const char* comp2 = lastletters.c_str();
 
-        if(strcmp(comp, first) >= 0 && strcmp(comp2, last) <= 0){
+        if(strcmp(root->record.app_name, first) >= 0 && strcmp(root->record.app_name, last) <= 0){
             isfound = true;
             if(isfound == true && base == true){
                 cout  << "Applications in Range (" << firstl << "," << lastl << ") in Category: " << root->record.category << endl;
@@ -172,13 +218,13 @@ void RangeA(string firstl, string lastl, struct tree* root, int &count, bool &is
     }
 }
 
-void RangeP(float firstprice, float lastprice, struct tree* root, int &count, bool &isfound, bool &base){
-    if(root != NULL){
+void RangeP(float firstprice, float lastprice, struct tree* root, int &count, bool &isfound, bool &base){// specific to find range of apps
+    if(root != NULL){                                                                                    // based off price
         RangeP(firstprice, lastprice, root->left, count, isfound, base);
         if(root->record.price >= firstprice && root->record.price <= lastprice){
             isfound = true;
             if(isfound == true && base == true){
-                cout  << "Applications in Range ($" << firstprice << ",$" << lastprice << ") in Category: " << root->record.category << endl;
+                cout  << "Applications in Price Range ($" << firstprice << ",$" << lastprice << ") in Category: " << root->record.category << endl;
                 base = false;
             }
             cout << "\t" << root->record.app_name << endl;
@@ -188,9 +234,9 @@ void RangeP(float firstprice, float lastprice, struct tree* root, int &count, bo
     }
 }
 
-void Range(string item, string newCat, struct categories *cat, int catAmount){
-    int count = 0;
-    size_t suba = item.find("app");
+void Range(string item, string newCat, struct categories *cat, int catAmount){ // this is a one call function but
+    int count = 0;                                                             // determines if the range is based off of
+    size_t suba = item.find("app");                                         // characters or price
     size_t subp = item.find("price");
     const char* category = newCat.c_str();
     struct categories* temp = cat;
@@ -207,7 +253,7 @@ void Range(string item, string newCat, struct categories *cat, int catAmount){
         for (int i = 0; i < catAmount; i++){
             if(strcmp(category,cat[i].category) == 0){RangeA(firstl, lastl, temp[i].root, count, isfound, base);}
         }
-        if (isfound == false){cout << "No applications found in " << newCat << " for the given range (" << firstl << "," << lastl << ")" << endl;}
+        if (isfound == false){cout << "No applications found in " << newCat << " for the given range (" << firstl << "," << lastl << ")." << endl;}
     }
 
     if(subp != string::npos){
@@ -219,10 +265,10 @@ void Range(string item, string newCat, struct categories *cat, int catAmount){
         for (int i = 0; i < catAmount; i++){
             if(strcmp(category,cat[i].category) == 0){RangeP(firstprice, lastprice, temp[i].root, count, isfound, base);}
         }
-        if (count == 0){cout << "No applications found in " << newCat << " for the given range ($" << firstprice << ",$" << lastprice << ")" << endl;}
+        if (count == 0){cout << "No applications found in " << newCat << " for the given price range ($" << firstprice << ",$" << lastprice << ")." << endl;}
     }
 }
-struct tree* minValueNode(struct tree* node){
+struct tree* minValueNode(struct tree* node){ // extension of DeleteTreeNode
     struct tree* current = node;
     while(current->left != NULL){current = current->left;}
     return current;
@@ -311,117 +357,12 @@ void DeleteApp(string searchItem, struct categories* cat, hash_table_entry *hash
     bool isfound = false;
 
     DeleteSearch(app, category, hashTable, cat, catAmount, tableSize, isfound);
-    if(isfound == false){cout << "Application " << app << " not found in category " << category << "; unable to delete\n"; }
+    if(isfound == false){cout << "Application " << app << " not found in category " << category << "; unable to delete.\n"; }
 }
 
-// =================================================================
-// FUNCTIONS RELATED TO BST
-struct tree* newNode(struct app_info currentApp) { // function to create a new node and store the currentApp
-    struct tree *temp = new tree();
-    temp->record = currentApp;
-    temp->left = temp->right = NULL;
-    return temp;
-}
 
-struct tree* insert(struct tree* treenode,  struct app_info currentApp, struct hash_table_entry *hashelement[], int tableSize){
-    if (treenode == NULL){                              // if a tree is empty, return a new node, or find the emptry node it belongs to
-        struct tree *nodetemp = newNode(currentApp);
-        hash_insert(nodetemp, hashelement, tableSize);  // this will insert the given app into the hash table
-        return nodetemp;                                // after finding the location the currentApp belongs to.
-    }
-    if (strcmp(currentApp.app_name, treenode->record.app_name) <= 0){
-        treenode->left = insert(treenode->left, currentApp, hashelement, tableSize);
-    }
-    else{treenode->right = insert(treenode->right, currentApp, hashelement, tableSize);}
-    return treenode;
-}
 // ======================================================
-// ============= REPORT ==================
-int BST_height(struct tree* root){
-    if(root == NULL){
-        return 0;
-    }
-    else{
-        int lheight = BST_height(root->left);
-        int rheight = BST_height(root->right);
-
-        if (lheight < rheight){return (rheight+1);}
-        else{return (lheight+1);}
-    }
-}
-
-int BST_count(struct tree* root){
-    int count = 1;
-    if(root == NULL){return 0;}
-    else{
-        count = count + BST_count(root->left);
-        count = count + BST_count(root->right);
-        return count;
-    }
-}
-void printlist(struct hash_table_entry *hash_table[], int tableSize){
-    struct hash_table_entry *temp;
-    int allcount[tableSize];
-
-    for(int i = 0; i < tableSize; i++){
-        cout << "hash[" << i << "]: ";
-        temp = hash_table[i];
-        int count = 0;
-        if(temp == NULL){cout << " ";}
-        while(temp != NULL){
-            cout << "->" << temp->app_name << " ";
-            temp = temp->next;
-            count++;
-        }
-        cout << "\t[0 <= " << count << " <= 4]";
-        allcount[i] = count;
-        cout << endl;
-    }
-    int sum = 0;
-    int max = allcount[0];
-    for (int i = 0; i < tableSize; i++){
-        sum += allcount[i];
-        if(allcount[i] > max){
-            max = allcount[i];
-        }
-    }
-    cout << "APP AMOUNT = " << sum << endl << endl;
-    cout << "TABLESIZE = " << tableSize << endl << endl;
-    float avg = sum/tableSize;
-    cout << "LOAD FACTOR = N/M = (APP AMOUNT)/(TABLE SIZE) = " << avg << endl;
-    cout << "MAX NODES = " << max << endl << endl;
-
-
-}
-
-
-void report(categories* cat, int catAmount, hash_table_entry* hash_table[], int tableSize){
-
-    for(int i = 0; i < catAmount; i++){
-        cout << "BST CATEGORY: " << cat[i].category << endl;
-        if(cat[i].root == NULL){
-            cout << "TOTAL NODES: 0" << endl;
-            cout << "MAX HEIGHT: 0" << endl;
-            cout << "HEIGHT LEFT: 0" << endl;
-            cout << "HEIGHT RIGHT: 0\n\n";
-        }
-        else {
-            int lheight = BST_height(cat[i].root->left);
-            int rheight = BST_height(cat[i].root->right);
-            cout << "TOTAL NODES: " << BST_count(cat[i].root) << endl;
-            cout << "MAX HEIGHT: ";
-            if (lheight < rheight){cout << rheight << endl;}
-            else{cout << lheight << endl;}
-            cout << "HEIGHT LEFT: " << lheight << endl;
-            cout << "HEIGHT RIGHT: " << rheight << endl << endl;
-
-
-        }
-    }
-
-    printlist(hash_table, tableSize);
-
-}
+// DELETE MEMORY
 void deleteBST(tree* node){
     if(node == NULL){return;}
     deleteBST(node->left);
@@ -531,7 +472,7 @@ int main() {
             size_t q2 = currentLine.find('"', q1+1);
             searchItem = currentLine.substr(q1+1, q2-q1-1);
             searchCategory(searchItem, cat, catAmount);
-            cout << ""<<endl;
+            cout << endl;
         }
         if (findprice != string::npos){
             searchFree(cat, catAmount);
@@ -553,5 +494,6 @@ int main() {
         }
     }
 DeleteMemory(cat, catAmount, hash_table, tableSize);
+delete[] hash_table;
 return 0;
 }
