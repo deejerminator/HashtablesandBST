@@ -1,4 +1,0 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /afs/asu.edu/users/j/j/n/jjnavar3/tmp/tmp.wxR12XltQW
--- Configuring done
--- Generating done
--- Build files have been written to: /afs/asu.edu/users/j/j/n/jjnavar3/tmp/tmp.wxR12XltQW/cmake-build-debug
